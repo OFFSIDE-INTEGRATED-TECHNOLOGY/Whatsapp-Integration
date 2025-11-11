@@ -306,11 +306,6 @@ docker run -p 8000:8000 whatsapp_integration
 
 - Enable GZIP compression on webhook endpoints for large payloads
 
-### 📦 Publishing to PyPI
-```bash
-python -m build
-python -m twine upload dist/*
-```
 
 ### 📜 License
 
