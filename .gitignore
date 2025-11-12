@@ -10,7 +10,6 @@ venv/
 dist/
 build/
 *.egg-info
-manage.py
-_config/
 .env
 .coverage
+*.pytest_cache
