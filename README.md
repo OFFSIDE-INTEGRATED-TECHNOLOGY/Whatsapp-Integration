@@ -123,20 +123,20 @@ Add to your root urls.py:
 ```bash
 urlpatterns = [
     ...
-    path("whatsapp/", include("whatsapp_integration.urls")),
+    path("api/v1/whatsapp/", include("whatsapp_integration.urls")),
 ]
 ```
 
 This registers:
 ```bash
-GET /whatsapp/webhook/verify/ → for verification handshake
+GET api/v1/whatsapp/webhook/verify/ → for verification handshake
 
-POST /whatsapp/webhook/ → for inbound message events
+POST api/v1/whatsapp/webhook/ → for inbound message events
 ```
 
 Example verification response
 ```
-GET /whatsapp/webhook/verify/?hub.mode=subscribe&hub.verify_token=YOUR_TOKEN&hub.challenge=CHALLENGE
+GET api/v1/whatsapp/webhook/verify/?hub.mode=subscribe&hub.verify_token=YOUR_TOKEN&hub.challenge=CHALLENGE
 ```
 
 Returns CHALLENGE if token matches.
@@ -203,8 +203,8 @@ WHATSAPP_RATE_PER_SECOND = 1.0
 
 ### 🧰 Development Setup
 ```bash
-git clone https://github.com/yourname/whatsapp-integration.git
-cd whatsapp-integration
+git clone https://github.com/OFFSIDE-INTEGRATED-TECHNOLOGY/Whatsapp-Integration.git
+cd Whatsapp-Integration
 ```
 
 ```bash
