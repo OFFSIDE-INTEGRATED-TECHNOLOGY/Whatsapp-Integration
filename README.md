@@ -48,10 +48,6 @@ Designed for **production environments** and **multi-project reusability**, this
 ```bash
 pip install whatsapp_integration
 ```
-If using locally before PyPI release:
-```bash
-pip install .
-```
 
 ### ⚙️ Configuration
 
@@ -207,32 +203,6 @@ WHATSAPP_RATE_PER_SECOND = 1.0
 | payload   | `JSONField` | raw webhook payload       |
 | processed | `Boolean`   | flag to avoid re-handling |
 
-### 🧰 Development Setup
-```bash
-git clone https://github.com/OFFSIDE-INTEGRATED-TECHNOLOGY/Whatsapp-Integration.git
-cd Whatsapp-Integration
-```
-
-```bash
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-```bash
-python manage.py migrate
-```
-
-### Run Docker (for DB + Redis):
-
-```bash
-docker-compose up -d
-```
-
-### 🧾 Testing
-```bash
-pytest -q
-```
-
 ### Includes:
 
 - Webhook verification test
@@ -262,33 +232,6 @@ Production tips:
 - Rotate access tokens periodically
 
 - Enable HTTPS and secure webhook secret
-
-### 🧩 Generating the Repository PDF
-
-To create a printable snapshot of your repo:
-```bash
-python tools/generate_pdf.py
-```
-
-This creates:
-
-whatsapp_integration_repo.pdf
-
-
-containing all files and source code for review or documentation.
-
-### 🧪 Continuous Integration
-
-GitHub Actions workflow runs linting and tests on each push:
-```bash
-.github/workflows/ci.yml
-```
-
-### 🧱 Docker Example
-```bash
-docker build -t whatsapp_integration .
-docker run -p 8000:8000 whatsapp_integration
-```
 
 ### 💡 Extending Functionality
 
