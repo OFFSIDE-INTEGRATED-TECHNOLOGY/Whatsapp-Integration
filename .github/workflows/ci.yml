@@ -1,28 +1,57 @@
-name: CI
+name: 🧪 Django WhatsApp Integration Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master, develop ]
 
 jobs:
   tests:
     runs-on: ubuntu-latest
+
     services:
       redis:
-        image: redis:7
-        ports: ['6379:6379']
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - name: Install
+          python-version: "3.11"
+
+      - name: ⚡ Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Run tests
+          pip install tox
+
+      - name: 🧱 Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: 🔧 Run Django migrations and tests via tox
+        env:
+          REDIS_URL: redis://localhost:6379/0
         run: |
-          python -m pytest -q
+          tox -e py311
+
+      - name: 🧩 Upload Coverage Report
+        if: success()
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+          fail_ci_if_error: false

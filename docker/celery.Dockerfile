@@ -6,4 +6,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app
 
-CMD ["celery", "-A", "example_project", "worker", "-l", "info", "--concurrency=4"]
+CMD ["celery", "-A", "config", "worker", "-l", "info", "--concurrency=4"]
