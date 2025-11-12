@@ -1,2 +1,9 @@
-include README.md LICENSE
-recursive-include whatsapp_integration *.py *.lua
+include README.md
+include LICENSE
+
+recursive-include whatsapp_integration *.py *.lua *.html *.json
+recursive-exclude tests *
+exclude manage.py
+prune _config
+prune venv
+prune scripts
