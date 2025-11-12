@@ -12,7 +12,6 @@ jobs:
   publish:
     name: 🚀 Build and Upload to PyPI
     runs-on: ubuntu-latest
-
     steps:
       - name: 🧩 Checkout repository
         uses: actions/checkout@v4
