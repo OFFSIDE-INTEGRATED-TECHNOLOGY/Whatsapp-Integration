@@ -37,7 +37,7 @@ jobs:
 
       - name: 🧩 Sync project version
         run: |
-          bumpver update --set-version ${{ steps.version.outputs.version }} --no-commit
+          bumpver update --set-version ${{ steps.version.outputs.version }} --no-commit --ignore-vcs-tag
 
       - name: 🔧 Build package
         run: |
