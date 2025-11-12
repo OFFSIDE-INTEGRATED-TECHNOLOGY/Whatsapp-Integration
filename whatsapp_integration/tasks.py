@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 MAX_ATTEMPTS = 6
 
-# use LuaRateLimiter wrapper to call the Lua script atomically
+# LuaRateLimiter wrapper to call the Lua script atomically
 rate_limiter = LuaRateLimiter.from_settings(prefix="whatsapp", rate_key="WHATSAPP_RATE_PER_SECOND")
 
 @shared_task(bind=True, acks_late=True, max_retries=8)
@@ -74,6 +74,7 @@ def send_whatsapp_message_task(self, message_id: str):
         msg.last_error = ""
         msg.save(update_fields=["external_id", "status", "last_error", "updated_at"])
         logger.info("Sent message %s recipient=%s external=%s", msg.id, msg.recipient, external_id)
+        
     except Exception as exc:
         severity = classify_error(exc)
         msg.last_error = str(exc)[:4000]

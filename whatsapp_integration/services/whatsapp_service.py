@@ -5,7 +5,6 @@ from typing import Optional, Dict, Any, List
 import requests
 from requests.adapters import HTTPAdapter, Retry
 from django.conf import settings
-
 logger = logging.getLogger(__name__)
 
 def exponential_backoff_sleep(attempt: int, base: float = 0.5, cap: float = 60.0) -> float:

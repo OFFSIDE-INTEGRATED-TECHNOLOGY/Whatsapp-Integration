@@ -1,5 +1,6 @@
 import requests
 
+
 def classify_error(exc) -> str:
     if isinstance(exc, requests.exceptions.RequestException):
         resp = getattr(exc, "response", None)

@@ -73,6 +73,12 @@ WHATSAPP_RATE_PER_SECOND = 1.5                # messages per second allowed
 REDIS_URL = "redis://localhost:6379/0"
 ```
 
+- Make migrations
+```bash
+python manage.py makemigrations
+```
+
+
 - Celery Setup
 
 In your settings.py:

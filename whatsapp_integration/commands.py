@@ -45,3 +45,4 @@ def dispatch_event(self, event_id):
             event.save(update_fields=["processed"])
     except Exception:
         raise
+

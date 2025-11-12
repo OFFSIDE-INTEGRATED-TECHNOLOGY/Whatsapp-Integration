@@ -7,7 +7,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "test-secret-key"
@@ -22,7 +21,7 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.staticfiles",
     "rest_framework",
-    "whatsapp_integration",  # your app
+    "whatsapp_integration",
 ]
 
 MIDDLEWARE = [
@@ -79,7 +78,6 @@ WHATSAPP_APP_SECRET = "test-app-secret"
 WHATSAPP_RATE_PER_SECOND = 1.0
 WHATSAPP_PHONE_NUMBER_ID = os.environ.get("WHATSAPP_PHONE_NUMBER_ID", "1234567890")
 WHATSAPP_ACCESS_TOKEN = os.environ.get("WHATSAPP_ACCESS_TOKEN", "test-access-token")
-
 AUTH_PASSWORD_VALIDATORS = []
 
 LANGUAGE_CODE = "en-us"
@@ -88,5 +86,4 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

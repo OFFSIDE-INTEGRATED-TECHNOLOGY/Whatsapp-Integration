@@ -19,6 +19,7 @@ except ImportError:
 logger = logging.getLogger(__name__)
 RATE_LIMITER = RedisTokenBucketLimiter() if RedisTokenBucketLimiter else None
 
+
 # --------------------------------------------------------------------
 # 🔐 Webhook Verification (GET)
 # --------------------------------------------------------------------
@@ -50,7 +51,7 @@ class WhatsAppWebhookReceiveView(APIView):
     def post(self, request, *args, **kwargs):
         app_secret = getattr(settings, "WHATSAPP_APP_SECRET", None)
 
-        # ✅ Rate limiting
+        # Rate limiting
         if RATE_LIMITER:
             RATE_LIMITER.redis.delete("whatsapp:webhook")
             allowed = RATE_LIMITER.allow(
@@ -66,7 +67,7 @@ class WhatsAppWebhookReceiveView(APIView):
 
         raw_body = request.body
 
-        # ✅ Conditional HMAC signature check
+        # Conditional HMAC signature check
         if app_secret:
             signature = (
                 request.META.get("HTTP_X_HUB_SIGNATURE_256")
@@ -85,7 +86,7 @@ class WhatsAppWebhookReceiveView(APIView):
                     logger.warning("Invalid signature.")
                     return HttpResponseForbidden("Invalid signature")
 
-        # ✅ Validate and persist
+        # Validate and persist
         serializer = WhatsAppWebhookEventSerializer(data={"payload": request.data})
         if not serializer.is_valid():
             logger.warning("Invalid webhook payload: %s", serializer.errors)

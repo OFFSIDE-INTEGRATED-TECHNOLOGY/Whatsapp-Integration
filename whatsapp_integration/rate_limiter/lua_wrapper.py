@@ -3,7 +3,6 @@ import redis
 import os
 import time
 from django.conf import settings
-
 REDIS_URL = getattr(settings, "REDIS_URL", "redis://localhost:6379/0")
 
 class LuaRateLimiter:

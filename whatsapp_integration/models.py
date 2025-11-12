@@ -11,7 +11,6 @@ class WhatsAppMessage(models.Model):
         ("delivered", "delivered"),
         ("failed", "failed"),
     )
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     recipient = models.CharField(max_length=64, db_index=True)
     message_type = models.CharField(max_length=16, choices=MESSAGE_TYPES)

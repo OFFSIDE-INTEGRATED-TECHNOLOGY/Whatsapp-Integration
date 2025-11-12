@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import WhatsAppMessage, WhatsAppWebhookEvent
-
 @admin.register(WhatsAppMessage)
 class WhatsAppMessageAdmin(admin.ModelAdmin):
     list_display = ("id", "recipient", "message_type", "status", "attempts", "created_at")

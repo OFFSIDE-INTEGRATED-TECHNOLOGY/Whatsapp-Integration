@@ -30,5 +30,4 @@ end
 
 redis.call("HMSET", key, "tokens", tokens, "timestamp", timestamp)
 redis.call("EXPIRE", key, 3600)
-
 return allowed
