@@ -10,3 +10,7 @@ venv/
 dist/
 build/
 *.egg-info
+manage.py
+config/
+.env
+.coverage
