@@ -6,4 +6,5 @@ psycopg2-binary>=2.9
 python-dotenv>=0.21
 reportlab>=4.0
 pytest
+pytest-cov
 djangorestframework
