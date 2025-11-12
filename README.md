@@ -74,6 +74,11 @@ REDIS_URL = "redis://localhost:6379/0"
 python manage.py makemigrations
 ```
 
+- migrate
+```bash
+python manage.py migrate
+```
+
 
 - Celery Setup
 
