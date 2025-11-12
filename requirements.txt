@@ -8,3 +8,4 @@ reportlab>=4.0
 pytest
 pytest-cov
 djangorestframework
+setuptools

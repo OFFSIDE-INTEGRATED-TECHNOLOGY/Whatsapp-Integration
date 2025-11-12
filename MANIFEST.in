@@ -3,6 +3,7 @@ include LICENSE
 
 recursive-include whatsapp_integration *.py *.lua *.html *.json
 recursive-exclude tests *
+prune whatsapp_integration/tests
 exclude manage.py
 prune _config
 prune venv
