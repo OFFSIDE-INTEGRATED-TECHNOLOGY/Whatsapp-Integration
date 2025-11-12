@@ -1,37 +1,61 @@
-name: Publish to PyPI
+name: 📦 Publish to PyPI
 
 on:
-  release:
-    types: [published]
   push:
     tags:
-      - "v*"
+      - 'v*'
+
+permissions:
+  contents: read
 
 jobs:
-  build-and-publish:
+  publish:
+    name: 🚀 Build and Upload to PyPI
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: 🧩 Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
 
-      - name: Set up Python
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Install build tools
+      - name: 🧰 Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install build twine
+          pip install build twine bumpver
 
-      - name: Build package
+      - name: 🏷 Extract version from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: 🧩 Sync project version
+        run: |
+          bumpver update --set-version ${{ steps.version.outputs.version }} --no-commit
+
+      - name: 🔧 Build package
         run: |
           python -m build
 
-      - name: Publish to PyPI
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      - name: 🔍 Check distribution
         run: |
-          python -m twine upload dist/*
+          twine check dist/*
+
+      - name: 📤 Upload to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: 📝 Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "Release ${{ github.ref_name }}"
+          generate_release_notes: true

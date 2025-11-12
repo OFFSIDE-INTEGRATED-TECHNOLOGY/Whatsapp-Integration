@@ -8,7 +8,7 @@ This package provides webhook handling, Celery dispatching,
 rate-limiting, and message abstractions.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 # Do NOT import Django or settings-dependent modules at top-level.
 # This prevents "ImproperlyConfigured" errors when users import the package outside Django.
