@@ -8,12 +8,14 @@ version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version {old_version} → {new_version}"
 tag_name = "v{new_version}"
 tag_message = "Release {new_version}"
-push = true
+commit = true
+tag = true
+push = false
 
 [tool.bumpver.file_patterns]
 "setup.cfg" = [
     'version = {version}',
 ]
 "whatsapp_integration/__init__.py" = [
-    '__version__ = "{version}"',
+    "__version__ = \"{version}\"",
 ]
