@@ -11,6 +11,6 @@ dist/
 build/
 *.egg-info
 manage.py
-config/
+_config/
 .env
 .coverage
