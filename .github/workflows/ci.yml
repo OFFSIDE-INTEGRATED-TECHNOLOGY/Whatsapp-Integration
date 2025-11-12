@@ -1,5 +1,4 @@
 name: 🧪 Django WhatsApp Integration Tests
-
 on:
   push:
     branches: [ main, master, develop ]
